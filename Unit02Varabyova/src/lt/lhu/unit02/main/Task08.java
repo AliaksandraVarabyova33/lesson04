@@ -14,7 +14,6 @@ public class Task08 {
 		double h = 2;
 
 		printTable(createTable(calculateFunctionArgs(a, b, h)));
-
 	}
 
 	public static double calculateFunctionResult(double arg) {
@@ -59,6 +58,5 @@ public class Task08 {
 		}
 
 		return functionArgsAndResults;
-
 	}
 }
