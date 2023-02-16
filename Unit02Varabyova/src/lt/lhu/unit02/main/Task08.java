@@ -1,7 +1,5 @@
 package lt.lhu.unit02.main;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -9,52 +7,34 @@ public class Task08 {
 
 	public static void main(String[] args) {
 
-		double a = 2;
-		double b = 10;
-		double h = 2;
+		int a = 2;
+		int b = 10;
+		int h = 2;
 
-		printTable(createTable(calculateFunctionArgs(a, b, h)));
+		printTable(calculateFunction(a, b, h));
+
 	}
 
-	public static double calculateFunctionResult(double arg) {
+	public static void printTable(Map<Integer, Double> functionArgsAndResults) {
 
-		double result = Math.round((2 * Math.tan(arg / 2) + 1) * 100.0) / 100.0;
+		System.out.printf("|\t%4s\t|\t%4s\t|", "fArg", "fRes");
+		System.out.println();
+		System.out.println("---------------------------------");
 
-		return result;
-	}
-
-	public static void printTable(Map<Double, Double> functionArgsAndResults) {
-
-		System.out.println("| fArg | fRes |");
-		System.out.println("---------------");
-
-		for (Map.Entry<Double, Double> item : functionArgsAndResults.entrySet()) {
-			System.out.println("| " + item.getKey() + " | " + item.getValue() + " |");
-			System.out.println("---------------");
+		for (Map.Entry<Integer, Double> item : functionArgsAndResults.entrySet()) {
+			System.out.printf("|\t%4d\t|\t%4.2f\t|", item.getKey(), item.getValue());
+			System.out.println();
+			System.out.println("---------------------------------");
 		}
 	}
 
-	public static List<Double> calculateFunctionArgs(double a, double b, double h) {
+	public static Map<Integer, Double> calculateFunction(int a, int b, int h) {
 
-		List<Double> result = new ArrayList<Double>();
-		result.add(a);
+		Map<Integer, Double> functionArgsAndResults = new TreeMap<Integer, Double>();
 
-		double temp = a;
-
-		while (temp < b) {
-			temp = temp + h;
-			result.add(temp);
-		}
-
-		return result;
-	}
-
-	public static Map<Double, Double> createTable(List<Double> functionArgs) {
-
-		Map<Double, Double> functionArgsAndResults = new TreeMap<Double, Double>();
-
-		for (Double arg : functionArgs) {
-			functionArgsAndResults.put(arg, calculateFunctionResult(arg));
+		for (int i = a; i <= b; i = i + h) {
+			double result = (2 * Math.tan(i / 2) + 1);
+			functionArgsAndResults.put(i, result);
 		}
 
 		return functionArgsAndResults;
